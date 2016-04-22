@@ -6,7 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+/**
+ * GUI component
+ * @author mildnchrt
+ *
+ */
 public class ConverterUI extends JFrame{
 	private JTextField input1, input2;
 	private JComboBox unit1, unit2;
@@ -22,11 +26,16 @@ public class ConverterUI extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 	}
+	
 	public static void main (String[] args){
 		UnitConverter uc = new UnitConverter();
 		ConverterUI view = new ConverterUI(uc);
 		view.setVisible(true);
 	}
+	
+	/**
+	 * initial components in the window
+	 */
 	private void initComponents() {
 		GridLayout layout1 = new GridLayout(2, 1);
 		Container c = new Container();
@@ -81,6 +90,12 @@ public class ConverterUI extends JFrame{
 	    input1.addActionListener(new ConvertButtonListener());
 	    input2.addActionListener(new ConvertButtonListener());
 	}
+	/**
+	 * ActionListener of JRadioButton Left
+	 * auto detect and call method convert() to convert value from fromUnit to toUnit
+	 * @author mildnchrt
+	 *
+	 */
 	class LeftButtonListener implements ActionListener {
 		public void actionPerformed( ActionEvent evt ) {
 			convert();
@@ -89,6 +104,13 @@ public class ConverterUI extends JFrame{
 			input2.setEnabled(false);
 		}
 	}
+	
+	/**
+	 * ActionListener of JradioButton right
+	 * auto detect and call method convert() to convert value from toUnit to fromUnit
+	 * @author mildnchrt
+	 *
+	 */
 	class RightButtonListener implements ActionListener {
 		public void actionPerformed( ActionEvent evt ) {
 			convert();
@@ -97,6 +119,12 @@ public class ConverterUI extends JFrame{
 			input1.setEnabled(false);
 		}
 	}
+	/**
+	 * ActionListener of JButton clear
+	 * clear input value in JTextField and set JComboBox to initial unit
+	 * @author mildnchrt
+	 *
+	 */
 	class ClearButtonListener implements ActionListener {
 		public void actionPerformed( ActionEvent evt ) {
 			unit1.setSelectedIndex(0);
@@ -105,11 +133,22 @@ public class ConverterUI extends JFrame{
 			input2.setText(null);
 		}
 	}
+	
+	/**
+	 * ActionListener of JButtun convertButton
+	 * call method convert() to covert input value
+	 * @author mildnchrt
+	 *
+	 */
 	class ConvertButtonListener implements ActionListener {
 		public void actionPerformed( ActionEvent evt ) {
 			convert();
 		}
 	}
+	
+	/**
+	 * covert input value from initial unit to selected unit
+	 */
 	public void convert() {
 		String s;
 		if (right.isSelected()) {
